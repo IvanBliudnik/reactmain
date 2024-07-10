@@ -14,7 +14,6 @@ export function UnControlledAccordion({titleValue}: UnControlledAccordionPropsTy
             {!collapsed && <AccordionBody/>}
         </div>
     )
-
 }
 
 type UnControlledAccordionTitle = {
