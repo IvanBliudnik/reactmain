@@ -1,10 +1,9 @@
 import {useState} from "react";
 
-type RatingPropsType = {
-    value: 0 | 1 | 2 | 3 | 4 | 5
-}
-
-
+// type RatingPropsType = {
+//     value: 0 | 1 | 2 | 3 | 4 | 5
+//     наш value теперь находится локально в useState
+// }
 
 export function UncontrolledRatting() {
     console.log('Rating rendering');
