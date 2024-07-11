@@ -1,5 +1,4 @@
 import './App.css';
-import {OnOff} from "./components/OnOff/OnOff";
 // import {useState} from "react";
 import {UncontrolledRatting} from "./components/UncontrolledRatting/UncontrolledRatting";
 import {useState} from "react";
@@ -7,6 +6,7 @@ import {Rating, RatingValueType} from "./components/Rating/Rating";
 import {UnControlledAccordion} from "./components/UncontrolledAccordion/UnControlledAccordion";
 import {Accordion1v} from "./components/Accordions/Accordion1v";
 import {Accordion2v} from "./components/Accordions/Accordion2v";
+import {UnControlledOnOff} from "./components/UncontrolledOnOff/UnControlledOnOff";
 // import {UncontrolledOnOff} from "./components/UncontrolledOnOff/UncontrolledOnOff";
 // import {UncontrolledAccordion} from "./components/UncontrolledAccordion/UncontrolledAccordion";
 
@@ -21,7 +21,7 @@ function App() {
         <div className="App">
             {/*<PageTitle title={'This is App component'} />*/}
             {/*<PageTitle title={'My friends'} />*/}
-            <OnOff/>
+            <UnControlledOnOff/>
             {/*<OnOff on={swichOn} onChange={setSwichOn}/>*/}
             {/*<UncontrolledOnOff onChange={setSwichOn}/> {swichOn.toString()}*/}
 

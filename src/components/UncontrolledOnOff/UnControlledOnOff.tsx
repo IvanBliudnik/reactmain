@@ -5,7 +5,7 @@ type OnOffPropsType = {
     // onChange: (on: boolean) => void
 }
 
-export function OnOff  (props: OnOffPropsType)  {
+export function UnControlledOnOff  (props: OnOffPropsType)  {
     console.log('onOff rendering' )
     let [swichOn, setSwichOn] = useState<boolean>(false);
     console.log("on:  " + swichOn )
