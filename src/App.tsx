@@ -25,10 +25,7 @@ function App() {
             <UnControlledAccordion titleValue={'Users'}/>
             <Accordion2v titleValue={"Menu"}
                          collapsed={accordionCollapsed}
-                         onChange={() => {
-                             setAccordionCollapsed(!accordionCollapsed)
-                         }}
-            />
+                         onChange={() => {setAccordionCollapsed(!accordionCollapsed)}}/>
             <UncontrolledRatting/>
             <Rating value={ratingValue} onClick={setRatingValue}/>
             <Accordion1v titleValue={"Users"} collapsed={accordionCollapsed} onClick={setAccordionCollapsed}/>
