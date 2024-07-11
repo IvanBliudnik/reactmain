@@ -17,7 +17,6 @@ export function Rating(props: RatingPropsType) {
         </div>
     );
 
-
     type StarPropsType = {
         selected: boolean
         value: RatingValueType
