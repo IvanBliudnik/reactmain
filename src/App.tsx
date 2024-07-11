@@ -14,7 +14,6 @@ function App() {
     let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
     let [swichOn, setSwichOn] = useState<boolean>(false);
 
-
     return (
         <div className="App">
             {/*<PageTitle title={'This is App component'} />*/}
