@@ -1,5 +1,4 @@
 import './App.css';
-// import {useState} from "react";
 import {UncontrolledRatting} from "./components/UncontrolledRatting/UncontrolledRatting";
 import {useState} from "react";
 import {Rating, RatingValueType} from "./components/Rating/Rating";
@@ -7,14 +6,13 @@ import {UnControlledAccordion} from "./components/UncontrolledAccordion/UnContro
 import {Accordion1v} from "./components/Accordions/Accordion1v";
 import {Accordion2v} from "./components/Accordions/Accordion2v";
 import {UnControlledOnOff} from "./components/UncontrolledOnOff/UnControlledOnOff";
-// import {UncontrolledOnOff} from "./components/UncontrolledOnOff/UncontrolledOnOff";
-// import {UncontrolledAccordion} from "./components/UncontrolledAccordion/UncontrolledAccordion";
+import {OnOff} from "./components/OnOff/OnOff";
 
 function App() {
     console.log('App rendering');
     let [ratingValue, setRatingValue] = useState<RatingValueType>(0);
     let [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
-
+    let [swichOn, setSwichOn] = useState<boolean>(false);
 
 
     return (
@@ -22,18 +20,17 @@ function App() {
             {/*<PageTitle title={'This is App component'} />*/}
             {/*<PageTitle title={'My friends'} />*/}
             <UnControlledOnOff/>
-            {/*<OnOff on={swichOn} onChange={setSwichOn}/>*/}
-            {/*<UncontrolledOnOff onChange={setSwichOn}/> {swichOn.toString()}*/}
-
-            <UnControlledAccordion titleValue={'Menu'} />
-            <UnControlledAccordion titleValue={'Users'} />
+            <OnOff on={swichOn} onChange={setSwichOn}/>
+            <UnControlledAccordion titleValue={'Menu'}/>
+            <UnControlledAccordion titleValue={'Users'}/>
             <Accordion2v titleValue={"Menu"}
                          collapsed={accordionCollapsed}
-                         onChange={()=>{setAccordionCollapsed(!accordionCollapsed)}}
+                         onChange={() => {
+                             setAccordionCollapsed(!accordionCollapsed)
+                         }}
             />
             <UncontrolledRatting/>
             <Rating value={ratingValue} onClick={setRatingValue}/>
-
             <Accordion1v titleValue={"Users"} collapsed={accordionCollapsed} onClick={setAccordionCollapsed}/>
         </div>
     )
