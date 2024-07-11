@@ -18,8 +18,8 @@ function App() {
         <div className="App">
             {/*<PageTitle title={'This is App component'} />*/}
             {/*<PageTitle title={'My friends'} />*/}
-            <UnControlledOnOff/>
-            <OnOff on={swichOn} onChange={setSwichOn}/>
+            <UnControlledOnOff onChange={setSwichOn}/> {swichOn.toString()}
+            {/*<OnOff on={swichOn} onChange={setSwichOn}/>*/}
             <UnControlledAccordion titleValue={'Menu'}/>
             <UnControlledAccordion titleValue={'Users'}/>
             <Accordion2v titleValue={"Menu"}
