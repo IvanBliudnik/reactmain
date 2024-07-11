@@ -1,11 +1,11 @@
-export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5;
+    export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5;
 
-type RatingPropsType = {
+    type RatingPropsType = {
     value: RatingValueType
     onClick: (value: RatingValueType) => void
 }
 
-export function Rating(props: RatingPropsType) {
+    export function Rating(props: RatingPropsType) {
     console.log('Rating rendering');
     return (
         <div>
