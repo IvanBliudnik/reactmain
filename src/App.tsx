@@ -6,7 +6,7 @@ import {UnControlledAccordion} from "./components/UncontrolledAccordion/UnContro
 import {Accordion1v} from "./components/Accordions/Accordion1v";
 import {Accordion2v} from "./components/Accordions/Accordion2v";
 import {UnControlledOnOff} from "./components/UncontrolledOnOff/UnControlledOnOff";
-import {OnOff} from "./components/OnOff/OnOff";
+// import {OnOff} from "./components/OnOff/OnOff";
 
 function App() {
     console.log('App rendering');
