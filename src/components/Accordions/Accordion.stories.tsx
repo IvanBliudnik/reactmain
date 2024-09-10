@@ -1,31 +1,30 @@
 import { action } from '@storybook/addon-actions';
-import { Accordion1v } from './Accordion1v';
+import { Accordion } from './Accordion';
 import { useState } from "react";
 
 
 
 export default {
-    component: Accordion1v
+    title: 'Accordion',
+    component: Accordion
 }
-const OnClickHandler = action("onClick")
+const callback = action("Accordion mode changed")
 
-export const CollapsedAccordion1v = () => {
-    return <Accordion1v titleValue={"Collapsed Accordion"}
+export const CollapsedMode = () => {
+    return <Accordion titleValue={"Collapsed Accordion"}
                         collapsed={true}
-                        onClick={()=>{
-                            console.log("Collapsed Accordion 1v");
-                        }}/>
+                        onClick={callback}/>
 }
 
-export const OpenedAccordion1v = () => {
-    return <Accordion1v titleValue={"Opened Accordion"}
+export const OpenedMode = () => {
+    return <Accordion titleValue={"Opened Accordion"}
                         collapsed={false}
-                        onClick={()=>{}}/>
+                        onClick={callback}/>
 }
 export const AccordionDemo = () => {
     const [collapsed, setCollapsed] = useState(false);
 
-    return <Accordion1v titleValue={"AccordionDemo"}
+    return <Accordion titleValue={"AccordionDemo"}
                         collapsed={collapsed}
                         onClick={()=> {setCollapsed(!collapsed)}}/>
 }

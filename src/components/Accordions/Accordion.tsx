@@ -4,7 +4,7 @@ type AccordionPropsType = {
     onClick: () => void,
 }
 
-export function Accordion1v(props: AccordionPropsType) {
+export function Accordion(props: AccordionPropsType) {
     console.log('Accordion1v rendering');
     return (
         <div>

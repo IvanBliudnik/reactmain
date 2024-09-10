@@ -3,7 +3,7 @@ import {UncontrolledRatting} from "./components/UncontrolledRatting/Uncontrolled
 import {useState} from "react";
 import {Rating, RatingValueType} from "./components/Rating/Rating";
 import {UnControlledAccordion} from "./components/UncontrolledAccordion/UnControlledAccordion";
-import {Accordion1v} from "./components/Accordions/Accordion1v";
+import {Accordion1v} from "./components/Accordions/Accordion";
 import {Accordion2v} from "./components/Accordions/Accordion2v";
 import {UnControlledOnOff} from "./components/UncontrolledOnOff/UnControlledOnOff";
 // import {OnOff} from "./components/OnOff/OnOff";
