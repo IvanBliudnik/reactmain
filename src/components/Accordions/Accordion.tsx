@@ -1,17 +1,24 @@
+type ItemType = {
+    title: string;
+    value: any;
+}
+
 type AccordionPropsType = {
     titleValue: string,
     collapsed: boolean,
-    onClick: () => void,
+    onChange: () => void
+    items: Array<ItemType>,
+    onClick: (value:any) => void,
 }
 
 export function Accordion(props: AccordionPropsType) {
     console.log('Accordion1v rendering');
     return (
         <div>
-            <AccordionTitle title={props.titleValue} onClick={props.onClick}/>
+            <AccordionTitle title={props.titleValue} onChange={props.onChange}/>
             {/*При клике на заголовок вызывается функция props.onClick с противоположным значением collapsed (если был свернут, то развернет, и наоборот).*/}
-            {!props.collapsed && <AccordionBody/>}
-        {/*    Если collapsed равно false, рендерит AccordionBody.*/}
+            {!props.collapsed && <AccordionBody items={props.items} onClick={props.onClick}/>}
+            {/*    Если collapsed равно false, рендерит AccordionBody.*/}
         </div>
     )
 
@@ -19,28 +26,32 @@ export function Accordion(props: AccordionPropsType) {
 
 type AccordionTitlePropsType = {
     title: string
-    onClick: () => void
+    onChange: () => void
 }
 
 function AccordionTitle(props: AccordionTitlePropsType) {
     console.log('AccordionTitle');
 
     return (
-        <h3 onClick={(event) => props.onClick()}>---{props.title}----</h3>
-    //Рендерит заголовок h3, который при клике вызывает props.onClick.
-    //     При клике на заголовок (AccordionTitle), вызывается функция props.onClick в Accordion1v, которая изменяет состояние collapsed на противоположное.
+        <h3 onClick={(event) => props.onChange()}>---{props.title}----</h3>
+        //Рендерит заголовок h3, который при клике вызывает props.onClick.
+        //     При клике на заголовок (AccordionTitle), вызывается функция props.onClick в Accordion1v, которая изменяет состояние collapsed на противоположное.
         // Это приводит к повторному рендерингу компонента Accordion1v с новым значением collapsed, что в свою очередь изменяет видимость AccordionBody.
     )
 }
 
-function AccordionBody() {
+type AccordionBodyPropsType = {
+    items: Array<ItemType>,
+    onClick: (value:any) => void,
+}
+
+function AccordionBody(props: AccordionBodyPropsType) {
     console.log('AccordionBody');
 
-    return (
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
+    return (<ul>
+            {props.items.map((item, index) => (<li onClick={() => {
+                props.onClick(item.value)
+            }} key={index}>{item.title}</li>))}
         </ul>
     )
 };

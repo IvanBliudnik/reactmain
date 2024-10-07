@@ -1,4 +1,4 @@
-let user = {
-    name: "Dimych",
-    age: 32
-}
+// let user = {
+//     name: "Dimych",
+//     age: 32
+// }
