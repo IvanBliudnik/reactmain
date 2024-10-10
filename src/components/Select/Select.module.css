@@ -1,0 +1,21 @@
+.select span.main {
+    border: 1px solid #151414;
+    display: inline-block;
+    min-width: 40px;
+    min-height: 20px;
+}
+
+.items {
+    position: absolute;
+/*накладывается сверху на элементы*/
+/*    display: none;*/
+    border: 1px solid #1c1b1b;
+    padding: 5px;
+    margin: 5px;
+}
+
+/*приорете в css кто ниже тот и круче*/
+/*прописываем для div .select.active*/
+/*.select.active .items {*/
+/*    display: block;*/
+/*}*/

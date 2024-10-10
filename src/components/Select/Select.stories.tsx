@@ -1,7 +1,5 @@
-
 import {Select} from "./Select";
 import {action} from "@storybook/addon-actions";
-import {useState} from "react";
 
 
 export default {
@@ -9,32 +7,10 @@ export default {
     component: Select
 }
 
-const callback = action("Select mode changed")
-const onClickCallback = action("some item was clicked")
+export const BaseExample = () =>
+    <Select value={"1"} onChange={action("Value changed")}
+            items={[{value: "1", title: "Minsk"}, {value: "2", title: "Moscow"}, {value: "3", title: "Kiev"}]}/>
 
-export const CollapsedMode = () => {
-    return <Select value={"Collapsed Accordion"}
-                      collapsed={true}
-                      onClick={onClickCallback}
-                      items={[]}
-                      onChange={callback}/>
-}
-
-export const OpenedMode = () => {
-    return <Select value={"Opened Accordion"}
-                      collapsed={false}
-                      onClick={onClickCallback}
-                      onChange={callback}
-                      items={[{title: "Minsk", value: 1}, {title: "Moscow", value: 2}, {title: "Kiev", value: 3}]}/>
-}
-export const AccordionDemo = () => {
-    const [collapsed, setCollapsed] = useState(false);
-
-    return <Select value={"SelectDemo"}
-                      collapsed={collapsed}
-                      onClick={(value) => {
-                          alert(`Your choice is ${value}`)
-                      }}
-                      onChange={() => setCollapsed(!collapsed)}
-                      items={[{title: "Minsk", value: 1}, {title: "Moscow", value: 2}, {title: "Kiev", value: 3}]}/>
-}
+export const ExampleWithoutValue = () =>
+    <Select onChange={action("Value changed")}
+            items={[{value: "1", title: "Minsk"}, {value: "2", title: "Moscow"}, {value: "3", title: "Kiev"}]}/>
