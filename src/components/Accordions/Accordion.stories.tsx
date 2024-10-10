@@ -14,7 +14,8 @@ export const CollapsedMode = () => {
     return <Accordion titleValue={"Collapsed Accordion"}
                       collapsed={true}
                       onClick={onClickCallback}
-                      items={[]} onChange={callback}/>
+                      items={[]}
+                      onChange={callback}/>
 }
 
 export const OpenedMode = () => {
