@@ -15,11 +15,11 @@ type SelectPropsType = {
 
 export function Select(props: SelectPropsType) {
     const [active, setActive] = React.useState(false);
-    const [hoveredElement, sethovereedElementValue] = React.useState(props.value);
+    const [hoveredElement, sethoveredElementValue] = React.useState(props.value);
     const selectedItem = props.items.find((it) => it.value === props.value)
     const hoveredItem = props.items.find((it) => it.value === hoveredElement)
     useEffect(() => {
-        sethovereedElementValue(props.value)
+        sethoveredElementValue(props.value)
     }, [props.value])
     const toggleItems = () => setActive(!active)
     const onItemClick = (value: any) => {
@@ -53,7 +53,7 @@ export function Select(props: SelectPropsType) {
                     <div className={styles.items}>
                         {props.items.map(item =>
                             <div onMouseEnter={() => {
-                                sethovereedElementValue(item.value)
+                                sethoveredElementValue(item.value)
                             }}
                                  className={styles.item + " " + (hoveredItem === item ? styles.selected : "")}
                                  key={item.value}
