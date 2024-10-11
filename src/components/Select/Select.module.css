@@ -7,13 +7,11 @@
 
 .items {
     position: absolute;
-/*накладывается сверху на элементы*/
-/*    display: none;*/
     border: 1px solid #1c1b1b;
     padding: 5px;
     margin: 5px;
 }
-.items.selected {
+.item.selected {
     background-color: #04a5ea;
     color: #fff;
 }
