@@ -13,6 +13,10 @@
     padding: 5px;
     margin: 5px;
 }
+.items.selected {
+    background-color: #04a5ea;
+    color: #fff;
+}
 
 /*приорете в css кто ниже тот и круче*/
 /*прописываем для div .select.active*/

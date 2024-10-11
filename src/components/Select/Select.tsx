@@ -15,21 +15,28 @@ type SelectPropsType = {
 
 export function Select(props: SelectPropsType) {
     const [active, setActive] = React.useState(false);
+    const [hoveredElement, sethovereedElementValue] = React.useState(props.value);
     const selectedItem = props.items.find((it) => it.value === props.value)
+    const hoveredItem = props.items.find((it) => it.value === hoveredElement)
     const toggleItems = () => setActive(!active)
-
+    const onItemClick = (value: any) => {
+        props.onChange(value)
+        toggleItems()
+    }
     return (
         <>
-            <div className={styles.select}>
+            <div className={styles.select} onKeyDown={()=>{}}>
                 <span className={styles.main} onClick={toggleItems}>{selectedItem && selectedItem.title}</span>
                 {active &&
                     <div className={styles.items}>
-                        {props.items.map((item: any, index: number) => <div
+                        {props.items.map((item: any) => <div
+                            className={styles.items + " " + (hoveredItem === item ? styles.selected : "")}
+                            onMouseEnter={() => {sethovereedElementValue(item.value)}}
                             key={item.value}
                             onClick={() => {
-                                props.onChange(item.value)
-                            }}>
-                            {item.title}
+                                onItemClick(item.value)
+                            }}
+                            >{item.title}
                         </div>)}
                     </div>
                 }
