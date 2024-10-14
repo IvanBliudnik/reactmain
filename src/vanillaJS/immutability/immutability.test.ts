@@ -1,22 +1,61 @@
-import {UserTypeImmutability} from "./immutability";
+import {makeHairStyle, moveUser, upgradeUserLaptop, UserTypeImmutability, UserWithLaptopType} from "./immutability";
 
 
-function increaseAge(u: UserTypeImmutability) {
-    u.hair++;
-}
 
-test("big test", () => {
+test("half cut test", () => {
     let user: UserTypeImmutability = {
         name: "Dimych",
         hair: 32,
-        address: {
-            title: "Minsk City",
+        adress: {
+            city: "Minsk City",
         }
     }
-    increaseAge(user);
-    expect(user.hair).toBe(33); //true
+    const awesomeUser = makeHairStyle(user, 2);
+
+    expect(user.hair).toBe(32); //true
+    expect(awesomeUser.hair).toBe(16); //true
+    expect(awesomeUser.adress).toBe(user.adress); //true toBe ===
 })
-//мутировали обьект user без копии
+
+test("change adress", () => {
+    let user: UserWithLaptopType = {
+        name: "Dimych",
+        hair: 32,
+        adress: {
+            city: "Minsk City",
+            house: 12,
+        },
+        laptop: {
+            title: "ZenBook",
+        }
+    }
+    const movedUser = moveUser(user, "Kiev");
+
+    expect(user).not.toBe(movedUser);
+    expect(user.adress).not.toBe(movedUser.adress);
+    expect(user.laptop).toBe(movedUser.laptop);
+    expect(movedUser.adress.city).toBe("Kiev");
+})
+
+test("upgrade to macbook", () => {
+    let user: UserWithLaptopType = {
+        name: "Dimych",
+        hair: 32,
+        adress: {
+            city: "Minsk City",
+            house: 12,
+        },
+        laptop: {
+            title: "ZenBook",
+        }
+    }
+    const userWithUpgradedLaptop = upgradeUserLaptop(user, "Macbook");
+    expect(user).not.toBe(userWithUpgradedLaptop);
+    expect(user.adress).toBe(userWithUpgradedLaptop.adress);
+    expect(user.laptop).not.toBe(userWithUpgradedLaptop.laptop);
+    expect(userWithUpgradedLaptop.laptop.title).toBe("Macbook");
+    expect(user.laptop.title).toBe("ZenBook");
+})
 
 test("array test", () => {
     let users = [{
