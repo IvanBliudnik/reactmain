@@ -1,4 +1,12 @@
-import {makeHairStyle, moveUser, upgradeUserLaptop, UserTypeImmutability, UserWithLaptopType} from "./immutability";
+import {
+    addNewBooksToUser,
+    makeHairStyle,
+    moveUser,
+    moveUserToOtherHouse, removeBook, updateBook,
+    upgradeUserLaptop,
+    UserTypeImmutability, UserWithBooksType,
+    UserWithLaptopType
+} from "./immutability";
 
 
 
@@ -16,7 +24,6 @@ test("half cut test", () => {
     expect(awesomeUser.hair).toBe(16); //true
     expect(awesomeUser.adress).toBe(user.adress); //true toBe ===
 })
-
 test("change adress", () => {
     let user: UserWithLaptopType = {
         name: "Dimych",
@@ -36,7 +43,6 @@ test("change adress", () => {
     expect(user.laptop).toBe(movedUser.laptop);
     expect(movedUser.adress.city).toBe("Kiev");
 })
-
 test("upgrade to macbook", () => {
     let user: UserWithLaptopType = {
         name: "Dimych",
@@ -56,6 +62,84 @@ test("upgrade to macbook", () => {
     expect(userWithUpgradedLaptop.laptop.title).toBe("Macbook");
     expect(user.laptop.title).toBe("ZenBook");
 })
+test("change house", () => {
+    let user: UserWithLaptopType & UserWithBooksType = {
+        name: "Dimych",
+        hair: 32,
+        adress: {
+            city: "Minsk City",
+            house: 12,
+        },
+        laptop: {
+            title: "ZenBook",
+        },
+        books: ["JS", "React", "CSS", "HTML"]
+    }
+    const userCopyBooks = moveUserToOtherHouse(user, 99);
+    expect(user).not.toBe(userCopyBooks);
+    expect(user.books).toBe(userCopyBooks.books);
+    expect(user.laptop).toBe(userCopyBooks.laptop);
+    expect(userCopyBooks.adress.house).toBe(99);
+})
+test("add new book to user", () => {
+    let user: UserWithLaptopType & UserWithBooksType = {
+        name: "Dimych",
+        hair: 32,
+        adress: {
+            city: "Minsk City",
+            house: 12,
+        },
+        laptop: {
+            title: "ZenBook",
+        },
+        books: ["JS", "React", "CSS", "HTML"]
+    }
+    const userCopyBooks = addNewBooksToUser(user, "ts");
+    expect(user).not.toBe(userCopyBooks);
+    expect(user.books).not.toBe(userCopyBooks.books);
+    expect(user.laptop).toBe(userCopyBooks.laptop);
+    expect(userCopyBooks.books[4]).toBe("ts");
+    expect(user.books.length).toBe(4);
+})
+test("update js to ts", () => {
+    let user: UserWithLaptopType & UserWithBooksType = {
+        name: "Dimych",
+        hair: 32,
+        adress: {
+            city: "Minsk City",
+            house: 12,
+        },
+        laptop: {
+            title: "ZenBook",
+        },
+        books: ["js", "React", "CSS", "HTML"]
+    }
+    const userCopyBooks = updateBook(user, "js" ,"ts");
+    expect(user).not.toBe(userCopyBooks);
+    expect(user.laptop).toBe(userCopyBooks.laptop);
+    expect(user.books).not.toBe(userCopyBooks.books);
+    expect(userCopyBooks.books[0]).toBe("ts");
+})
+test("remove js book", () => {
+    let user: UserWithLaptopType & UserWithBooksType = {
+        name: "Dimych",
+        hair: 32,
+        adress: {
+            city: "Minsk City",
+            house: 12,
+        },
+        laptop: {
+            title: "ZenBook",
+        },
+        books: ["js", "React", "CSS", "HTML"]
+    }
+    const userCopyBooks = removeBook(user, "js");
+    expect(user).not.toBe(userCopyBooks);
+    expect(user.laptop).toBe(userCopyBooks.laptop);
+    expect(user.books).not.toBe(userCopyBooks.books);
+    expect(userCopyBooks.books[0]).toBe("React");
+})
+
 
 test("array test", () => {
     let users = [{
@@ -71,7 +155,6 @@ test("array test", () => {
     expect(users[2]).toEqual({name: "Bandit", age: 10}); //true
 })
 //мутировали обьект user без копии
-
 test("array interesting test", () => {
     const address = {
         title: "Minsk",

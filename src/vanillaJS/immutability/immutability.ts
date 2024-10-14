@@ -12,6 +12,9 @@ export type LaptopType = {
 export type UserWithLaptopType = UserTypeImmutability & {
      laptop: LaptopType
 }
+export type UserWithBooksType = UserTypeImmutability & {
+    books: Array<string>
+}
 
 export function makeHairStyle(u: UserTypeImmutability, power: number) {
     const userCopy = {...u, hair: u.hair/power};
@@ -26,3 +29,27 @@ export function moveUser(u: UserWithLaptopType, city: string) {
 export function upgradeUserLaptop(u: UserWithLaptopType, newLaptop: string) {
     return {...u, laptop: {...u.laptop, title: newLaptop}};
 }
+export function moveUserToOtherHouse(u: UserWithLaptopType & UserWithBooksType, house: number) {
+    return {...u, adress: {
+            ...u.adress, house: house
+        }};
+}
+export function addNewBooksToUser(u: UserWithLaptopType & UserWithBooksType, newBook: string) {
+    return {...u, books: [...u.books, newBook]};
+}
+export function updateBook(u: UserWithLaptopType & UserWithBooksType, oldBook: string, newBook: string) {
+const copy = {
+    ...u, books: u.books.map(b => b === oldBook ? newBook : b)
+    // {
+    // if (oldBook === b) {
+    //     return newBook
+    // } else {
+    //     return b
+    // }
+    // })}
+}
+return copy;
+}
+export const removeBook = (u: UserWithLaptopType & UserWithBooksType, bookForDelete: string) =>  ({
+        ...u, books: u.books.filter(b => b !== bookForDelete) //оставит книги кроме той которая не равна bookForDelete
+})
