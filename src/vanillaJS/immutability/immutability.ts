@@ -15,6 +15,9 @@ export type UserWithLaptopType = UserTypeImmutability & {
 export type UserWithBooksType = UserTypeImmutability & {
     books: Array<string>
 }
+export type WithCompaniesType = {
+    companies: Array<{ id:number, title: string }>
+}
 
 export function makeHairStyle(u: UserTypeImmutability, power: number) {
     const userCopy = {...u, hair: u.hair/power};
@@ -53,3 +56,7 @@ return copy;
 export const removeBook = (u: UserWithLaptopType & UserWithBooksType, bookForDelete: string) =>  ({
         ...u, books: u.books.filter(b => b !== bookForDelete) //оставит книги кроме той которая не равна bookForDelete
 })
+export const addCompany = (u: UserWithLaptopType & UserWithBooksType & WithCompaniesType, newCompany: {}) =>
+    ({
+        ...u, newCompany: {...u, company: newCompany}
+    })

@@ -1,11 +1,12 @@
 import {
+    addCompany,
     addNewBooksToUser,
     makeHairStyle,
     moveUser,
     moveUserToOtherHouse, removeBook, updateBook,
     upgradeUserLaptop,
     UserTypeImmutability, UserWithBooksType,
-    UserWithLaptopType
+    UserWithLaptopType, WithCompaniesType
 } from "./immutability";
 
 
@@ -138,6 +139,25 @@ test("remove js book", () => {
     expect(user.laptop).toBe(userCopyBooks.laptop);
     expect(user.books).not.toBe(userCopyBooks.books);
     expect(userCopyBooks.books[0]).toBe("React");
+})
+test("add new company", () => {
+    let user: UserWithBooksType & WithCompaniesType & UserWithLaptopType = {
+        name: "Dimych",
+        hair: 32,
+        adress: {
+            city: "Minsk City",
+            house: 12,
+        },
+        laptop: {
+            title: "ZenBook",
+        },
+        books: ["js", "React", "CSS", "HTML"],
+        companies: [{id: 1, title: "Epam"}, {id: 2, title: "IT-Incubator"}],
+    }
+    const userCompanies = addCompany(user, {id: 3, title: "Google"});
+    expect(user).not.toBe(userCompanies);
+    expect(user.laptop).toBe(userCompanies.laptop);
+    expect(userCompanies.companies).toBe(3);
 })
 
 
