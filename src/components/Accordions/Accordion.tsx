@@ -1,5 +1,5 @@
-import {useReducer} from "react";
-import {reducer, Toggle_const} from "./reducer";
+import {useState} from "react";
+
 
 type ItemType = {
     title: string;
@@ -16,16 +16,15 @@ type AccordionPropsType = {
 
 export function Accordion(props: AccordionPropsType) {
     console.log('Accordion rendering');
-    // let [collapsed, setCollapsed] = useState<boolean>(false)
-    let [collapsed, dispatch] = useReducer(reducer, false)
+    let [collapsed, setCollapsed] = useState<boolean>(false)
+
     return (
         <div>
-            {/*<AccordionTitle title={props.titleValue} onChange={props.onChange}/>*/}
+            <AccordionTitle title={props.titleValue} onChange={props.onChange}/>
             {/*При клике на заголовок вызывается функция props.onClick с противоположным значением collapsed (если был свернут, то развернет, и наоборот).*/}
-            {/*{!props.collapsed && <AccordionBody items={props.items} onClick={props.onClick}/>}*/}
+            {!props.collapsed && <AccordionBody items={props.items} onClick={props.onClick}/>}
             {/*    Если collapsed равно false, рендерит AccordionBody.*/}
-            <AccordionTitle title={props.titleValue} onChange={()=> {dispatch({type:Toggle_const}) }}/>
-                {!collapsed && <AccordionBody items={props.items} onClick={props.onClick}/>}
+
         </div>
     )
 
