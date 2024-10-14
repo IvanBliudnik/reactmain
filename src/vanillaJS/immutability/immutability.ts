@@ -1,4 +1,7 @@
-// let user = {
-//     name: "Dimych",
-//     age: 32
-// }
+export type UserTypeImmutability = {
+    name: string,
+    hair: number,
+    address: {
+        title: string
+    }
+}

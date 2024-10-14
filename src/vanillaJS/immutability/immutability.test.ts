@@ -1,27 +1,21 @@
-//мутабельный мир где обьект меняется (мутирует)
-// так как мы не создаём копии
+import {UserTypeImmutability} from "./immutability";
 
-// function increaseAge(u: UserType) {
-//     u.age++;
-// }
 
-// type UserType = {
-//     name: string,
-//     age: number,
-//     address: {title:string}
-// }
-// test("big test", () => {
-//     let user: UserType = {
-//         name: "Dimych",
-//         age: 32
-//     }
-//     increaseAge(user);
-//     expect(user.age).toBe(33); //true
-//     const superman = user
-//     console.log(superman === user) //true
-//     superman.age = 100
-//     expect(user.age).toBe(100) //true
-// })
+function increaseAge(u: UserTypeImmutability) {
+    u.hair++;
+}
+
+test("big test", () => {
+    let user: UserTypeImmutability = {
+        name: "Dimych",
+        hair: 32,
+        address: {
+            title: "Minsk City",
+        }
+    }
+    increaseAge(user);
+    expect(user.hair).toBe(33); //true
+})
 //мутировали обьект user без копии
 
 test("array test", () => {
