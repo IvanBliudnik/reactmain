@@ -15,8 +15,9 @@ export type UserWithLaptopType = UserTypeImmutability & {
 export type UserWithBooksType = UserTypeImmutability & {
     books: Array<string>
 }
-export type WithCompaniesType = {
-    companies: Array<{ id:number, title: string }>
+type CompanyType = { id:number, title: string }
+export type WithCompanies = {
+    companies: Array<CompanyType>
 }
 
 export function makeHairStyle(u: UserTypeImmutability, power: number) {
@@ -28,7 +29,6 @@ export function moveUser(u: UserWithLaptopType, city: string) {
         ...u.adress, city: city
         }};
 }
-
 export function upgradeUserLaptop(u: UserWithLaptopType, newLaptop: string) {
     return {...u, laptop: {...u.laptop, title: newLaptop}};
 }
@@ -56,7 +56,17 @@ return copy;
 export const removeBook = (u: UserWithLaptopType & UserWithBooksType, bookForDelete: string) =>  ({
         ...u, books: u.books.filter(b => b !== bookForDelete) //оставит книги кроме той которая не равна bookForDelete
 })
-export const addCompany = (u: UserWithLaptopType & UserWithBooksType & WithCompaniesType, newCompany: {}) =>
+export const addCompany = (u: UserWithLaptopType & UserWithBooksType & WithCompanies, newCompany: {}) =>
     ({
-        ...u, newCompany: {...u, company: newCompany}
+        ...u, companies: [...u.companies, newCompany]
     })
+export const updateCompany = (u: UserWithLaptopType & UserWithBooksType & WithCompanies, companyId: number, newTitle: string) =>
+    ({
+        ...u, companies: u.companies.map(c=> c.id === companyId ? {...c, title: newTitle} : c)
+    })
+export const updateCompanyTitleAssocial = (companies: { [key: string]: Array<CompanyType> }, userName: string, companyId: number, newTitle: string) =>
+    {
+        let companyCopy = {...companies}
+        companyCopy[userName] = companyCopy[userName].map(c => c.id===companyId ? {...c, title:newTitle} : c)
+        return companyCopy;
+    }

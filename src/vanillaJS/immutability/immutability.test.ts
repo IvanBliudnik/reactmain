@@ -3,10 +3,10 @@ import {
     addNewBooksToUser,
     makeHairStyle,
     moveUser,
-    moveUserToOtherHouse, removeBook, updateBook,
+    moveUserToOtherHouse, removeBook, updateBook, updateCompany, updateCompanyTitleAssocial,
     upgradeUserLaptop,
     UserTypeImmutability, UserWithBooksType,
-    UserWithLaptopType, WithCompaniesType
+    UserWithLaptopType, WithCompanies
 } from "./immutability";
 
 
@@ -141,7 +141,7 @@ test("remove js book", () => {
     expect(userCopyBooks.books[0]).toBe("React");
 })
 test("add new company", () => {
-    let user: UserWithBooksType & WithCompaniesType & UserWithLaptopType = {
+    let user: UserWithLaptopType & WithCompanies & UserWithBooksType & UserTypeImmutability = {
         name: "Dimych",
         hair: 32,
         adress: {
@@ -151,74 +151,50 @@ test("add new company", () => {
         laptop: {
             title: "ZenBook",
         },
-        books: ["js", "React", "CSS", "HTML"],
+        books: ["JS", "React", "CSS", "HTML"],
         companies: [{id: 1, title: "Epam"}, {id: 2, title: "IT-Incubator"}],
     }
-    const userCompanies = addCompany(user, {id: 3, title: "Google"});
-    expect(user).not.toBe(userCompanies);
-    expect(user.laptop).toBe(userCompanies.laptop);
-    expect(userCompanies.companies).toBe(3);
+    const userCopy = addCompany(user, {id: 3, title: "Google"});
+    expect(userCopy.companies).toEqual([{id: 1, title: "Epam"}, {id: 2, title: "IT-Incubator"}, {id: 3, title: "Google"}]);
 })
-
-
-test("array test", () => {
-    let users = [{
-            name: "Dimych",
-            age: 32
+test("update company", () => {
+    let user: UserWithLaptopType & WithCompanies & UserWithBooksType & UserTypeImmutability = {
+        name: "Dimych",
+        hair: 32,
+        adress: {
+            city: "Minsk City",
+            house: 12,
         },
-        {
-            name: "Ivan",
-            age: 33
-        }]
-    let admins = users
-    admins.push({name: "Bandit", age: 10}) //добавили в users Bandita
-    expect(users[2]).toEqual({name: "Bandit", age: 10}); //true
-})
-//мутировали обьект user без копии
-test("array interesting test", () => {
-    const address = {
-        title: "Minsk",
+        laptop: {
+            title: "ZenBook",
+        },
+        books: ["JS", "React", "CSS", "HTML"],
+        companies: [{id: 1, title: "Eпam"}, {id: 2, title: "IT-Incubator"}],
     }
-
-    let user:UserType = {
+    const userCopy = updateCompany(user,  1, "Epam");
+    expect(userCopy).not.toBe(user);
+    expect(userCopy.companies).not.toBe(user);
+    expect(user.adress).toBe(userCopy.adress);
+    expect(userCopy.companies[0].title).toBe("Epam");
+})
+test("update company from associal array", () => {
+    let user: UserWithLaptopType = {
         name: "Dimych",
-        age: 32,
-        address: address
+        hair: 32,
+        adress: {
+            city: "Minsk City",
+            house: 12,
+        },
+        laptop: {
+            title: "ZenBook",
+        },
     }
-    // let addr = user.address
-    let user2: UserType = {
-        name: "Natasha",
-        age: 32,
-        address:address
+        let companies = {
+           "Dimych": [{id: 1, title: "Eпam"}, {id: 2, title: "IT-Incubator"}],
+           "Artem": [{id: 1, title: "Google"}, {id: 2, title: "IT-Incubator"}],
     }
-    address.title = "Minsk City"
-
-    expect(user.address.title).toBe("Minsk City")
-    expect(user.address.title).toBe(user2.address.title)
+    const copy = updateCompanyTitleAssocial(companies, "Dimych", 1, "Epam")
+    expect(copy["Dimych"]).not.toBe(companies["Dimych"]);
+    expect(copy["Artem"]).toBe(companies["Artem"]);
+    expect(copy["Dimych"][0].title).toBe("Epam");
 })
-test("reference array interesting test", () => {
-    const address = {
-        title: "Minsk",
-    }
-
-    let user:UserType = {
-        name: "Dimych",
-        age: 32,
-        address: address
-    }
-    // let addr = user.address
-    let user2: UserType = {
-        name: "Natasha",
-        age: 32,
-        address:address
-    }
-
-    const users = [user, user2, {name: "Katya", age: 12, address:address}]
-
-    const admins = [user, user2]
-    admins[0].name = "Dmitry"
-
-    expect(users[0].name).toBe("Dmitry")
-    expect(user.name).toBe("Dmitry")
-})
-
