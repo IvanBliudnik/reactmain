@@ -1,6 +1,6 @@
 import {action} from '@storybook/addon-actions';
 import {Accordion} from './Accordion';
-import {useState} from "react";
+import React, {useState} from "react";
 
 
 export default {
@@ -25,14 +25,25 @@ export const OpenedMode = () => {
                       onChange={callback}
                       items={[{title: "Dimych", value: 1}, {title: "Valera", value: 2}, {title: "Victor", value: 3}]}/>
 }
+
 export const AccordionDemo = () => {
     const [collapsed, setCollapsed] = useState(false);
-
-    return <Accordion titleValue={"AccordionDemo"}
-                      collapsed={collapsed}
-                      onClick={(value) => {
-                          alert(`user with id ${value} should be happy`)
-                      }}
-                      onChange={() => setCollapsed(!collapsed)}
-                      items={[{title: "Dimych", value: 1}, {title: "Valera", value: 2}, {title: "Victor", value: 3}]}/>
+    const [items, setItems] = useState([{title: "Dimych", value: 1}, {title: "Valera", value: 2}, {
+        title: "Victor",
+        value: 3
+    }])
+    const addItem = () => {
+        const newItem = [...items, {title: "Sveta", value: 4}];
+        setItems(newItem);
+    }
+    return <>
+        <Accordion titleValue={"AccordionDemo"}
+                   collapsed={collapsed}
+                   onClick={(value) => {
+                       alert(`user with id ${value} should be happy`)
+                   }}
+                   onChange={() => setCollapsed(!collapsed)}
+                   items={items}/>
+        <button onClick={addItem}>add item</button>
+    </>
 }

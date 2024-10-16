@@ -1,22 +1,23 @@
-import {useState} from "react";
-
+import React from "react";
 
 type ItemType = {
     title: string;
     value: any;
 }
 
-type AccordionPropsType = {
+export type AccordionPropsType = {
     titleValue: string,
     collapsed: boolean,
     onChange: () => void
     items: Array<ItemType>,
-    onClick: (value:any) => void,
+    onClick: (value: any) => void,
 }
+
+const AccordionBody = React.memo(AccordionBodySecret)
 
 export function Accordion(props: AccordionPropsType) {
     console.log('Accordion rendering');
-    let [collapsed, setCollapsed] = useState<boolean>(false)
+    // let [collapsed, setCollapsed] = useState<boolean>(false)
 
     return (
         <div>
@@ -48,10 +49,10 @@ function AccordionTitle(props: AccordionTitlePropsType) {
 
 type AccordionBodyPropsType = {
     items: Array<ItemType>,
-    onClick: (value:any) => void,
+    onClick: (value: any) => void,
 }
 
-function AccordionBody(props: AccordionBodyPropsType) {
+export function AccordionBodySecret(props: AccordionBodyPropsType) {
     console.log('AccordionBody');
 
     return (<ul>
