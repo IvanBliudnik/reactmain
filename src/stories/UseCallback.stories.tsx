@@ -2,7 +2,7 @@ import React, {useCallback, useMemo} from 'react';
 
 
 export default {
-    title: 'useMemo.demo',
+    title: 'useCallBack.demo',
 };
 
 export const LikeUseCallback = () => {
