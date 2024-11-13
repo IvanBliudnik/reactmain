@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 export default {
     title: 'useEffect demo',
@@ -68,3 +68,38 @@ export const SetTimeExample = () => {
         </>
     );
 };
+export const Clock = () => {
+    const [time, setTime] = React.useState(new Date());
+    useEffect(() => {
+        let a = new Date()
+        setInterval(()=> {
+            let b = a.getSeconds()
+            setTime(new Date());
+        }, 1000)
+    }, [])
+    return (
+        <>
+            Hello,watches: {time.getSeconds()}
+        </>
+    );
+};
+
+
+// export const Clock = () => {
+//     const [time, setTime] = useState(new Date());
+//
+//     useEffect(() => {
+//         const timerId = setInterval(() => {
+//             setTime(new Date());  // обновляем состояние с новым временем
+//         }, 1000);
+//
+//         // очистка таймера при размонтировании компонента
+//         return () => clearInterval(timerId);
+//     }, []);
+//
+//     return (
+//         <>
+//             Hello, time: {time.toLocaleTimeString()}
+//         </>
+//     );
+// };
