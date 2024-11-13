@@ -18,11 +18,12 @@ export const SimpleExample = () => {
         console.log("useEffect only first time render(componentDidMount)");
         document.title = counter.toString();
     }, [])
+    //вызов только при загрузке страницы 1 раз
     useEffect(() => {
         console.log("useEffect first time render and every time {counter} change");
         document.title = counter.toString();
     }, [counter])
-    //, [counter] вызов только при загрузке страницы, потом только при изменении {counter}
+    // только при изменении {counter}
     return (
         <>
             Hello, {counter} {fake}
