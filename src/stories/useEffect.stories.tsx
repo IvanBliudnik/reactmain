@@ -68,38 +68,19 @@ export const SetTimeExample = () => {
         </>
     );
 };
+
+
 export const Clock = () => {
-    const [time, setTime] = React.useState(new Date());
+    const [time, setTime] = useState(new Date());
     useEffect(() => {
-        let a = new Date()
-        setInterval(()=> {
-            let b = a.getSeconds()
+        const clock = setInterval(() => {
             setTime(new Date());
-        }, 1000)
-    }, [])
+            // обновляем состояние с новым временем
+        }, 1000);
+    }, []);
     return (
         <>
-            Hello,watches: {time.getSeconds()}
+            {time.toLocaleTimeString()}
         </>
     );
 };
-
-
-// export const Clock = () => {
-//     const [time, setTime] = useState(new Date());
-//
-//     useEffect(() => {
-//         const timerId = setInterval(() => {
-//             setTime(new Date());  // обновляем состояние с новым временем
-//         }, 1000);
-//
-//         // очистка таймера при размонтировании компонента
-//         return () => clearInterval(timerId);
-//     }, []);
-//
-//     return (
-//         <>
-//             Hello, time: {time.toLocaleTimeString()}
-//         </>
-//     );
-// };
