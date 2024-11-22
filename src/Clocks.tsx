@@ -1,20 +1,21 @@
 import React, {useEffect, useState} from "react";
-import {clearInterval} from "node:timers";
+
 
 
 type PropsType = {}
 
 const get2DigitString = (num: number) => num < 10 ? "0" + num : num
-export const Clocks: React.FC<PropsType> = (props: PropsType) => {
+export const Clocks: React.FC<PropsType> = () => {
     const [date, setDate] = useState(new Date())
     useEffect(() => {
-        const intervalId = setInterval(() => {
-            console.log("Tick interval");
+
+        const intervalID = setInterval(() => {
+            console.log("Tick");
             setDate(new Date())
-        }, 1000)
+        }, 1000);
         // для остановки setInterval чтобы не жрала память (зачистка мусора при выключении компоненты )
         return () => {
-            clearInterval(intervalId)
+            clearInterval(intervalID)
         }
     }, []); //useEffect сработал один раз при запуски
 
