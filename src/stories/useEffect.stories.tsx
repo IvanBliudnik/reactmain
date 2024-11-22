@@ -70,17 +70,3 @@ export const SetTimeExample = () => {
 };
 
 
-export const Clock = () => {
-    const [time, setTime] = useState(new Date());
-    useEffect(() => {
-        const clock = setInterval(() => {
-            setTime(new Date());
-            // обновляем состояние с новым временем
-        }, 1000);
-    }, []);
-    return (
-        <>
-            {time.toLocaleTimeString()}
-        </>
-    );
-};
