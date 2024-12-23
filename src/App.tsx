@@ -1,11 +1,11 @@
 import './App.css';
-import {UncontrolledRatting} from "./components/UncontrolledRatting/UncontrolledRatting";
+import {RatingValueType, UncontrolledRatting} from "./components/UncontrolledRatting/UncontrolledRatting";
 import {useState} from "react";
-import {Rating, RatingValueType} from "./components/Rating/Rating";
+import {Rating} from "./components/Rating/Rating";
 import {UnControlledAccordion} from "./components/UncontrolledAccordion/UnControlledAccordion";
-import {Accordion1v} from "./components/Accordions/Accordion";
-import {Accordion2v} from "./components/Accordions/Accordion2v";
 import {UnControlledOnOff} from "./components/UncontrolledOnOff/UnControlledOnOff";
+import {Accordion} from "./components/Accordions/Accordion";
+
 // import {OnOff} from "./components/OnOff/OnOff";
 
 function App() {
@@ -22,12 +22,21 @@ function App() {
             {/*<OnOff on={swichOn} onChange={setSwichOn}/>*/}
             <UnControlledAccordion titleValue={'Menu'}/>
             <UnControlledAccordion titleValue={'Users'}/>
-            <Accordion2v titleValue={"Menu"}
-                         collapsed={accordionCollapsed}
-                         onChange={() => {setAccordionCollapsed(!accordionCollapsed)}}/>
-            <UncontrolledRatting/>
+            <Accordion titleValue={"Menu"}
+                       collapsed={accordionCollapsed}
+                       onChange={() => {
+                           setAccordionCollapsed(!accordionCollapsed);
+                       }} items={[]} onClick={function (value: any): void {
+                throw new Error('Function not implemented.');
+            }}/>
+            <UncontrolledRatting onChange={function(value: RatingValueType): void {
+                throw new Error('Function not implemented.');
+            } }/>
             <Rating value={ratingValue} onClick={setRatingValue}/>
-            <Accordion1v titleValue={"Users"} collapsed={accordionCollapsed} onClick={setAccordionCollapsed}/>
+            <Accordion titleValue={"Users"} collapsed={accordionCollapsed} onClick={setAccordionCollapsed}
+                       onChange={function (): void {
+                           throw new Error('Function not implemented.');
+                       }} items={[]}/>
         </div>
     )
 }

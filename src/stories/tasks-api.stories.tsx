@@ -1,7 +1,5 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {tasksApi} from "../api/tasks-api";
-import {todolistsApi} from "../api/todolists-api";
-import {number} from "prop-types";
 
 
 export default {

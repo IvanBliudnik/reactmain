@@ -31,7 +31,7 @@ export const CreateTodolists    = () => {
 export const DeleteTodolists    = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        const id = "badbd018-a372-4933-9351-287b5fa8e1ad"
+        const id = "5be56e88-8696-4292-887c-2b280d942129"
         todolistsApi.deleteTodolist(id).then((res) => {
                 setState(res.data)
             })
@@ -41,7 +41,7 @@ export const DeleteTodolists    = () => {
 export const UpdateTodolists    = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
-        const id = "5ced5196-e3df-4487-b84f-1acdb80775a3"
+        const id = "6ee044a2-61df-43e2-83fb-3f78e6d2e6d8"
        todolistsApi.updateTodolist(id, "YOYOYOY").then((res) => {
                 setState(res.data)
             })
