@@ -45,9 +45,8 @@ export const tasksApi = {
         return instance.get<GetTasksResponse>(`todo-lists/${todolistId}/tasks`)
         //<> это уточнение, мы уточняем что нам вернётся массив обьектов с типом TasksType
     },
-    createTask(todolistId:string,taskId: string,title: string) {
-        const promise = instance.post<ResponseType<{ item: TaskType }>>(`todo-lists/${todolistId}/tasks/${taskId}`, {title})
-        return promise
+    createTask(todolistId:string, title: string) {
+        return  instance.post<ResponseType<TaskType>>(`todo-lists/${todolistId}/tasks`, {title})
     },
     deleteTask(todolistId: string, taskId:string) {
         return  instance.delete<ResponseType<{}>>(`todo-lists/${todolistId}/tasks/${taskId}`)
