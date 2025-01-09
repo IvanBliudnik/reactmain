@@ -1,0 +1,25 @@
+.Select_select__4W4IK .Select_main__GbDJ\+ {
+    border: 1px solid #151414;
+    display: inline-block;
+    min-width: 40px;
+    min-height: 20px;
+}
+
+.Select_items__fa3Lg {
+    position: absolute;
+    border: 1px solid #1c1b1b;
+    padding: 5px;
+    margin: 5px;
+}
+.Select_item__hx02u.Select_selected__HVQSY {
+    background-color: #04a5ea;
+    color: #fff;
+}
+
+/*приорете в css кто ниже тот и круче*/
+/*прописываем для div .select.active*/
+/*.select.active .items {*/
+/*    display: block;*/
+/*}*/
+
+/*# sourceMappingURL=components-Select-Select-stories.5671fc34.chunk.css.map*/
