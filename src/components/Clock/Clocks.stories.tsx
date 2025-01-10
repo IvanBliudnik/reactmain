@@ -1,5 +1,5 @@
 import React from "react";
-import {Clocks} from "../Clocks";
+import {Clocks} from "./Clocks";
 
 
 
