@@ -119,7 +119,7 @@ export const SetTimeoutExample = () => {
     useEffect(() => {
        const timeoutID = setTimeout(() => {
             console.log("timeout expired")
-            setText("3 seconds passed ")
+            setText("3 seconds pass ")
         }, 3000)
         return () => {
             clearTimeout(timeoutID) //зачистка обязательна
